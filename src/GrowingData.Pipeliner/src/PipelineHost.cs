@@ -35,7 +35,6 @@ namespace GrowingData.Pipeliner {
 			_pipelineName = new DirectoryInfo(path).Name;
 
 			_logger = LogManager.GetLogger("PipelineHost");
-			//_logger.
 		}
 
 
@@ -115,7 +114,7 @@ namespace GrowingData.Pipeliner {
 
 					// Verify that the assembly has a single entrypoint
 					var pipelines = assembly.GetTypes()
-						.Where(t => t.BaseType.FullName == "GrowingData.ANZ.InsitesPipeline.Pipeline")
+						.Where(t => t.BaseType.FullName == "GrowingData.Pipeliner.Pipeline")
 						.ToList();
 
 					if (pipelines.Count > 1) {

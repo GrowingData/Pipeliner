@@ -20,7 +20,7 @@ namespace GrowingData.Pipeliner {
 				path = args[0];
 			}
 
-			Console.WriteLine(path);
+			Console.WriteLine("Running pipeline from: {0}", path);
 			var host = new PipelineHost(path);
 
 			try {
