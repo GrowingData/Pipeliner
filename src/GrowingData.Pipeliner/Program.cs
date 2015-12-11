@@ -24,7 +24,7 @@ namespace GrowingData.Pipeliner {
 			var host = new PipelineHost(path);
 
 			try {
-				if (host.Compile()) {
+				if (host.Load()) {
 					Console.WriteLine("Compilation success!");
 				} else {
 					Console.WriteLine("Compilation failed!");
@@ -32,7 +32,7 @@ namespace GrowingData.Pipeliner {
 
 				}
 			} catch (Exception ex) {
-				logger.Debug(ex, "Unable to load Script");
+				logger.Error(ex, string.Format("Unable to load Script: {0}\r\n{1}", ex.Message, ex.StackTrace));
 				return;
 			}
 

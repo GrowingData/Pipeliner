@@ -25,7 +25,7 @@ namespace GrowingData.Pipeliner {
 
 		public string WorkbookPath {
 			get {
-				return Path.Combine(_pipelineDirectory.Parent.FullName, "Workbooks");
+				return Path.Combine(_pipelineDirectory.Parent.Parent.FullName, "Workbooks");
 			}
 		}
 
@@ -63,14 +63,14 @@ namespace GrowingData.Pipeliner {
 		}
 
 		protected void StepComplete(int stepNumber) {
-			_logger.Info("Pipeline: {0}, Step: {1} complete", _name, stepNumber);
+			_logger.Debug("Pipeline: {0}, Step: {1} complete", _name, stepNumber);
 		}
 
 		public bool RunStep(string name) {
 			for (var i = 0; i < Steps.Count; i++) {
 				var step = Steps[i];
 				if (step.StepName == name) {
-					_logger.Info("Found {0} at Step #{1} in {2}.  Running...", name, i, _name);
+					_logger.Debug("Found {0} at Step #{1} in {2}.  Running...", name, i, _name);
 					try {
 						bool success = step.Step(step, i);
 						return success;
@@ -91,7 +91,7 @@ namespace GrowingData.Pipeliner {
 		public bool RunAll() {
 			for (var i = 0; i < Steps.Count; i++) {
 				var step = Steps[i];
-				_logger.Info("Running {0} at Step #{1} in {2}...", step.StepName, i, _name);
+				_logger.Debug("Running {0} at Step #{1} in {2}...", step.StepName, i, _name);
 				try {
 					bool success = step.Step(step, i);
 					if (!success) {
